@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+  </head>
+  <style>
+    body {
+      background-color: #4286f4;
+    }
+  </style>
+  <body>
+    <h1>Hello World!</h1>
+    <!-- All of the Node.js APIs are available in this renderer process. -->
+    We are using Node.js <script>document.write(process.versions.node)</script>,
+    Chromium <script>document.write(process.versions.chrome)</script>,
+    and Electron <script>document.write(process.versions.electron)</script>.
+
+    <script>
+      //console.log(navigator.onLine);
+
+      window.addEventListener('online', () => {
+        console.log('User is online');
+      });
+
+      window.addEventListener('offline', () => {
+        console.log('User is offline');
+      });
+    </script>
+  </body>
+</html>

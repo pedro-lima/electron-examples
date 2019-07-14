@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+  </head>
+  <style media="screen">
+    .box {
+      border: 5px dashed black;
+      color: white;
+      width: 150px;
+      height: 100px;
+      text-align: center;
+      vertical-align: middle;
+      line-height: 50px; 
+    }
+    #filebox {
+      background-color: green;
+      margin-bottom: 1rem;
+    }
+    #trashbox {
+      background-color: red;
+    }
+  </style>
+  <body>
+
+    <div class="box" id="filebox">
+      <h2>Open File</h2>
+    </div>
+    <div class="box" id="trashbox">
+      <h2>Open File</h2>
+    </div>
+
+    <script>
+      const {shell} = require('electron');
+
+      //shell.openExternal('https://github.com');
+
+      const filebox = document.getElementById('filebox');
+      const trashbox = document.getElementById('trashbox');
+
+      let myFile = null;
+
+      filebox.ondragover = filebox.ondragend = filebox.ondragleave = 
+      trashbox.ondragover = trashbox.ondragend = trashbox.ondragleave = () => {
+        return false;
+      }     
+
+      filebox.ondrop = (e) => {
+        myFile = e.dataTransfer.files[0].path;
+        shell.openItem(myFile);
+        return false;
+      }
+
+      trashbox.ondrop = (e) => {
+        myFile = e.dataTransfer.files[0].path;
+        shell.moveItemToTrash(myFile);
+        return false;
+      }
+    </script>
+  </body>
+</html>

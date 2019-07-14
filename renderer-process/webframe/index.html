@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+  </head>  
+  <body>
+    <h1>webFrame</h1>
+    <img src="http://via.placeholder.com/200x150" />
+    <br />
+    <input type="button" id="zoom_up" value="Zoom up" />
+    <input type="button" id="zoom_down" value="Zoom down" />
+    <input type="button" id="zoom_reset" value="Zoom reset" />
+
+    <hr />
+
+    <textarea rows="10" cols="50" id="code"></textarea>
+    <br />
+    <input type="button" id="run_js" value="Run JS" />
+    
+    <script>
+      const {webFrame} = require('electron');
+
+      let zoom = 0;
+
+      document.getElementById('zoom_up').addEventListener('click', (event) => {
+        webFrame.setZoomLevel(++zoom);
+      });
+
+      document.getElementById('zoom_down').addEventListener('click', (event) => {
+        webFrame.setZoomLevel(--zoom);
+      });
+
+      document.getElementById('zoom_reset').addEventListener('click', (event) => {
+        webFrame.setZoomLevel(zoom = 0);
+      });
+
+      document.getElementById('run_js').addEventListener('click', (event) => {
+
+        var code = document.getElementById('code').value;
+
+        webFrame.executeJavaScript(code);
+      });
+
+      //Returns an object describing usage information of Blink's internal memory caches.
+      console.log(webFrame.getResourceUsage());
+    </script>
+  </body>
+</html>

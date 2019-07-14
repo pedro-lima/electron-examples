@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+  </head>
+  <style>
+    webview {
+      height: 480px;
+      border: 1px solid gray;      
+    }
+    input, button {
+      font-size: 2rem; 
+    }
+  </style>
+  <body>
+    <webview id="webview1" src="page1.html" allowpopups></webview>
+    <hr />
+    <input id="url" type="text" placeholder="URL to load" />
+    <button id="load">Load</button>
+    <h4 id="currentPage"></h4>
+  </body>
+  <script>
+    let webview = document.getElementById('webview1');
+    let load = document.getElementById('load');
+    let url = document.getElementById('url');
+    let currentPage = document.getElementById('currentPage');
+    
+    /*
+    webview.addEventListener('did-start-loading', (e) => {
+      console.log('Started load webview');
+    });
+
+    webview.addEventListener('did-stop-loading', (e) => {
+      console.log('Finished load webview');
+      //nao tem acesso ao this
+      webview.insertCSS('body{background-color: orange !important}');
+    });
+
+    webview.addEventListener('did-stop-loading', function(e) {
+      //this referencia o webview
+      console.log(this.getWebContents());      
+    });
+    */
+
+    load.addEventListener('click', function(e) {
+      webview.loadURL(url.value); 
+    });
+
+    webview.addEventListener('did-navigate', function(e) {      
+      currentPage.innerText = e.url;      
+    });
+
+    webview.addEventListener('did-fail-load', function(e) {      
+      currentPage.innerText = 'Failed to load URL';      
+    });
+
+  </script>
+</html>

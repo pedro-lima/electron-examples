@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+  </head>  
+  <body>    
+    <p>
+      <input type="button" onclick="open_window()" value="Open Google" /> 
+    </p> 
+    <p>
+      <input type="button" onclick="close_window()" value="Close Google" /> 
+    </p>
+    <p>
+      <input type="button" onclick="alert_window('This is a alert')" value="Alert on Google" /> 
+    </p>    
+    <script>
+      let win = null;
+
+      const open_window = () => {
+        win = window.open('https://www.google.com.br', 'Google Window','width=420,height=230,resizable,scrollbars=yes');
+      }
+
+      const close_window = () => {
+        if(win !== null) {
+          win.close();
+          win = null;
+        }        
+      }
+
+      const alert_window = (msg) => {
+        if(win !== null) {
+          win.eval(`alert('${msg}')`);
+        }        
+      }
+
+    </script>
+  </body>
+</html>

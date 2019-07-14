@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+  </head>  
+  <body>
+    <h1>Hello World!</h1>
+    <button id="crash">Crash me</button>
+    <script>
+      console.log(`Process type: ${process.type}`);
+      console.log(`Electron version: ${process.versions.electron}`);
+      console.log(`Chromium version: ${process.versions.chrome}`);
+      console.log(`Resources path: ${process.resourcesPath}`);
+      console.log(`Memory info: ${process.getProcessMemoryInfo()}`);
+
+
+      //testando uma situação em que a aplicação quebra
+      document.getElementById('crash').addEventListener('click', (e) => {
+        //deve ser usado apenas para teste
+        console.log('crashed');
+        process.crash();
+      });
+    </script>
+  </body>
+</html>

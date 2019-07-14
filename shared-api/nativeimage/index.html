@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+  </head>
+  <style>
+    body {
+      background-color: #4286f4;
+    }
+  </style>
+  <body>
+    <img id="logoImg" src="" />
+    <script>
+      const fs = require('fs');
+      const nativeImage = require('electron').nativeImage;
+
+      let logo = nativeImage.createFromPath(`${__dirname}/assets/iconTemplate.png`);
+
+      fs.writeFile('/tmp/logo.png', logo.toPNG(100), (err) => {
+        if (err) throw err;
+        console.log('The file has been saved!');
+      });
+
+      console.log(logo.toDataURL());
+
+      //console.log(logo.getSize());
+      logoSize = logo.getSize();
+      document.getElementById('logoImg').src = logo.resize({width: logoSize.width * 2, height: logoSize.height * 2}).toDataURL();
+    
+    </script>
+  </body>
+</html>

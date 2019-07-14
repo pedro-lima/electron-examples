@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+  </head>
+  <style>
+    html, body {
+      height: 100%;
+    }
+  </style>
+  <body onclick="showClickPoint()">
+    <h1>Hello World!</h1>
+    <!-- All of the Node.js APIs are available in this renderer process. -->
+    We are using Node.js <script>document.write(process.versions.node)</script>,
+    Chromium <script>document.write(process.versions.chrome)</script>,
+    and Electron <script>document.write(process.versions.electron)</script>.
+
+    <script>
+      const electron = require('electron');
+      
+      function showClickPoint() {
+        console.log(electron.screen.getCursorScreenPoint());
+      }
+      
+      //const displays = electron.screen.getAllDisplays();
+      //console.log(displays);
+      //console.log(displays[0].size.width, displays[0].size.height);
+      //console.log(displays[0].bounds.x, displays[0].bounds.y);
+
+      /*
+      electron.screen.on('display-metrics-changed', (event, display, changedMetrics) => {
+        console.log(display);
+        console.log(changedMetrics);        
+      });
+      */
+
+      
+    </script>
+  </body>
+</html>
